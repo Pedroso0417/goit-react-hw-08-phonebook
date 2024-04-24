@@ -1,0 +1,34 @@
+.contactList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.Contact {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+  margin-left: 15px;
+}
+
+/* Styles for ContactListItem component */
+.contactListItem {
+  border-bottom: 1px solid #ccc;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactListItem:last-child {
+  border-bottom: none;
+}
+
+.contactName {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.contactNumber {
+  color: #777;
+  font-size: 14px;
+}
