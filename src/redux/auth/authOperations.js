@@ -12,7 +12,7 @@ export const login = createAsyncThunk(
           email,
           password,
         }
-      );
+      );  
 
       if (response.data.success) {
         return response.data.token;

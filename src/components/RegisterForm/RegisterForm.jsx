@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { register } from '../../redux/auth/authOperations';
 
 export const RegisterForm = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +14,6 @@ export const RegisterForm = () => {
       const response = await axios.post('https://your-backend-url/register', {
         email,
         password,
-        register,
       });
 
       if (response.data.success) {
@@ -28,6 +26,7 @@ export const RegisterForm = () => {
         setSuccess(false);
       }
     } catch (err) {
+      // console.log(err.response.data); // Log the error response
       setError(err.response.data.message);
       setSuccess(false);
     }
