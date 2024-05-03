@@ -1,15 +1,15 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { LoginForm } from 'components/LoginForm/LoginForm';
 
-const RegisterPage = () => {
+const LoginPage = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Registration</title>
+        <title>Login</title>
       </Helmet>
-      <RegisterForm />
+      <LoginForm />
     </HelmetProvider>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

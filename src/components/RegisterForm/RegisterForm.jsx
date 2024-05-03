@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 export const RegisterForm = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -14,16 +15,18 @@ export const RegisterForm = () => {
       const response = await axios.post(
         'https://connections-api.herokuapp.com/register',
         {
+          name,
           email,
           password,
         }
       );
 
-      if (response.data.success) {
+      if (response.data?.success) {
         setSuccess(true);
         setError(null);
         setEmail('');
         setPassword('');
+        setName('');
       } else {
         setError(response.data.message);
         setSuccess(false);
@@ -40,12 +43,24 @@ export const RegisterForm = () => {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text" // Corrected
+            id="name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            autoComplete="name"
+            required
+          />
+        </div>
+        <div>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
-            id="email" // Add id attribute
+            id="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            autoComplete="email" // Add autocomplete attribute
             required
           />
         </div>
@@ -53,9 +68,10 @@ export const RegisterForm = () => {
           <label htmlFor="password">Password:</label>
           <input
             type="password"
-            id="password" // Add id attribute
+            id="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            autoComplete="current-password" // Add autocomplete attribute
             required
           />
         </div>
@@ -67,3 +83,5 @@ export const RegisterForm = () => {
     </div>
   );
 };
+
+// export default RegisterForm;

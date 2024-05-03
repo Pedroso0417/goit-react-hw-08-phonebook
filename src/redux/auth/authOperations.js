@@ -4,11 +4,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 // Login operation
 export const login = createAsyncThunk(
   'auth/register',
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ name, email, password }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         'https://connections-api.herokuapp.com/register',
         {
+          name,
           email,
           password,
         }
@@ -65,16 +66,17 @@ export const register = createAsyncThunk(
 // Update user operation
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({name, email, password }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
         'https://connections-api.herokuapp.com/updateUser',
         {
+          name,
           email,
           password,
         }
       );
-
+      
       if (response.data.success) {
         return response.data.message;
       } else {
