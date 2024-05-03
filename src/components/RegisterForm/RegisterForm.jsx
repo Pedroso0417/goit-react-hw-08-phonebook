@@ -11,10 +11,13 @@ export const RegisterForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://your-backend-url/register', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        'https://connections-api.herokuapp.com/register',
+        {
+          email,
+          password,
+        }
+      );
 
       if (response.data.success) {
         setSuccess(true);
@@ -37,18 +40,20 @@ export const RegisterForm = () => {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
+            id="email" // Add id attribute
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
+            id="password" // Add id attribute
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
@@ -56,6 +61,7 @@ export const RegisterForm = () => {
         </div>
         <button type="submit">Register</button>
       </form>
+
       {error && <p>{error}</p>}
       {success && <p>Successfully registered!</p>}
     </div>

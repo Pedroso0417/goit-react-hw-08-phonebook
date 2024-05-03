@@ -3,16 +3,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // Login operation
 export const login = createAsyncThunk(
-  'auth/login',
+  'auth/register',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://connections-api.herokuapp.com/login',
+        'https://connections-api.herokuapp.com/register',
         {
           email,
           password,
         }
-      );  
+      );
 
       if (response.data.success) {
         return response.data.token;
@@ -27,10 +27,10 @@ export const login = createAsyncThunk(
 
 // Logout operation
 export const logout = createAsyncThunk(
-  'auth/logout',
+  'auth/login',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.post('https://connections-api.herokuapp.com/logout');
+      await axios.post('https://connections-api.herokuapp.com/login');
       return null;
     } catch (err) {
       return rejectWithValue(err.response.data.message);
@@ -40,11 +40,11 @@ export const logout = createAsyncThunk(
 
 // Register operation
 export const register = createAsyncThunk(
-  'auth/register',
+  'auth/logout',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://connections-api.herokuapp.com/register',
+        'https://connections-api.herokuapp.com/logout',
         {
           email,
           password,
