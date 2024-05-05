@@ -7,11 +7,18 @@ export const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const error = useSelector(authReducer);
+  // const error = useSelector(authReducer);
 
-  const handleSubmit = e => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    try {
+      const response = await dispatch(login({ email, password }));
+      // Handle response or redirect user after successful login
+      console.log(response)
+    } catch (error) {
+      // Handle error
+      console.error('Login failed:', error);
+    }
   };
 
   return (
@@ -38,7 +45,7 @@ export const LoginForm = () => {
         </div>
         <button type="submit">Login</button>
       </form>
-      {error && <p>{error}</p>}
+      {/* {error && <p>{error}</p>} */}
     </div>
   );
 };

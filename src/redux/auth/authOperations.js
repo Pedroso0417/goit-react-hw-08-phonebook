@@ -7,7 +7,7 @@ export const login = createAsyncThunk(
   async ({ name, email, password }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://connections-api.herokuapp.com/register',
+        'https://connections-api.herokuapp.com/users/login',
         {
           name,
           email,

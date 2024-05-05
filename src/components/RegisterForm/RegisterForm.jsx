@@ -13,7 +13,7 @@ export const RegisterForm = () => {
 
     try {
       const response = await axios.post(
-        'https://connections-api.herokuapp.com/register',
+        'https://connections-api.herokuapp.com/users/signup',
         {
           name,
           email,
